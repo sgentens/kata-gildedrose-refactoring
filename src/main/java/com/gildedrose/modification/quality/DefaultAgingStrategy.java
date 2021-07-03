@@ -18,39 +18,14 @@ public class DefaultAgingStrategy implements AgingStrategy {
 
     @Override
     public void accept(Item item) {
-        if (!isBackstagePasses(item)) {
-            if (item.quality > 0) {
-                item.quality = item.quality - 1;
-            }
-        } else if (item.quality < 50) {
-            item.quality = item.quality + 1;
-            if (isBackstagePasses(item)) {
-                handleBackstagePasses(item);
-            }
+        if (item.quality > 0) {
+            item.quality = item.quality - 1;
         }
 
-            item.sellIn = item.sellIn - 1;
+        item.sellIn = item.sellIn - 1;
 
         if (isAfterSellDate(item)) {
-            if (isBackstagePasses(item)) {
-                item.quality = 0;
-            } else {
-                item.quality = item.quality > 0 ? item.quality - 1 : 0;
-            }
+            item.quality = item.quality > 0 ? item.quality - 1 : 0;
         }
-    }
-
-    private void handleBackstagePasses(Item item) {
-        if (item.sellIn < 11) {
-            item.quality = item.quality + 1;
-        }
-
-        if (item.sellIn < 6) {
-            item.quality = item.quality + 1;
-        }
-    }
-
-    private boolean isBackstagePasses(Item item) {
-        return "Backstage passes to a TAFKAL80ETC concert".equals(item.name);
     }
 }
