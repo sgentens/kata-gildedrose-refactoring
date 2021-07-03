@@ -9,7 +9,7 @@ import static com.gildedrose.utils.ItemUtils.isAfterSellDate;
  * @author Steven Gentens
  * @since 0.0.1
  */
-public class AgedBrieQualityModificationStrategy implements QualityModificationStrategy {
+public class AgedBrieAgingStrategy implements AgingStrategy {
 
     @Override
     public boolean isApplicable(Item item) {

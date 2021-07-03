@@ -1,21 +1,21 @@
 package com.gildedrose;
 
-import com.gildedrose.modification.quality.AgedBrieQualityModificationStrategy;
-import com.gildedrose.modification.quality.DefaultQualityModificationStrategy;
-import com.gildedrose.modification.quality.QualityModificationStrategy;
+import com.gildedrose.modification.quality.AgedBrieAgingStrategy;
+import com.gildedrose.modification.quality.DefaultAgingStrategy;
+import com.gildedrose.modification.quality.AgingStrategy;
 
 import java.util.Arrays;
 import java.util.List;
 
 class GildedRose {
     Item[] items;
-    List<QualityModificationStrategy> qualityModificationStrategies;
+    List<AgingStrategy> qualityModificationStrategies;
 
     public GildedRose(Item[] items) {
         this.items = items;
         qualityModificationStrategies = Arrays.asList(
-            new AgedBrieQualityModificationStrategy(),
-            new DefaultQualityModificationStrategy()
+            new AgedBrieAgingStrategy(),
+            new DefaultAgingStrategy()
         );
     }
 
