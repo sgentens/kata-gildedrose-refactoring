@@ -19,7 +19,7 @@ public class DefaultAgingStrategy implements AgingStrategy {
     @Override
     public void accept(Item item) {
         if (!isBackstagePasses(item)) {
-            if (item.quality > 0 && !isSulfuras(item)) {
+            if (item.quality > 0) {
                 item.quality = item.quality - 1;
             }
         } else if (item.quality < 50) {
@@ -29,14 +29,12 @@ public class DefaultAgingStrategy implements AgingStrategy {
             }
         }
 
-        if (!isSulfuras(item)) {
             item.sellIn = item.sellIn - 1;
-        }
 
         if (isAfterSellDate(item)) {
             if (isBackstagePasses(item)) {
                 item.quality = 0;
-            } else if (!isSulfuras(item)) {
+            } else {
                 item.quality = item.quality > 0 ? item.quality - 1 : 0;
             }
         }
@@ -54,9 +52,5 @@ public class DefaultAgingStrategy implements AgingStrategy {
 
     private boolean isBackstagePasses(Item item) {
         return "Backstage passes to a TAFKAL80ETC concert".equals(item.name);
-    }
-
-    private boolean isSulfuras(Item item) {
-        return "Sulfuras, Hand of Ragnaros".equals(item.name);
     }
 }
