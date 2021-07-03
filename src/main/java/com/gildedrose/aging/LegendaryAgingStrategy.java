@@ -1,4 +1,4 @@
-package com.gildedrose.modification.quality;
+package com.gildedrose.aging;
 
 import com.gildedrose.Item;
 import com.gildedrose.utils.ItemUtils;

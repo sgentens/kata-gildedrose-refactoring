@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-import com.gildedrose.modification.quality.*;
+import com.gildedrose.aging.*;
 
 import java.util.Arrays;
 import java.util.List;

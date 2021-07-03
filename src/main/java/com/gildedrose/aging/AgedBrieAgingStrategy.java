@@ -1,4 +1,4 @@
-package com.gildedrose.modification.quality;
+package com.gildedrose.aging;
 
 import com.gildedrose.Item;
 import org.apache.commons.lang3.StringUtils;
