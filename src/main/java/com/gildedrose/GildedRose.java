@@ -15,12 +15,12 @@ import static com.gildedrose.utils.ItemUtils.MIN_QUALITY;
 class GildedRose {
 
     Item[] items;
-    List<AgingStrategy> qualityModificationStrategies;
+    List<AgingStrategy> agingStrategies;
     List<AgingFactor> agingFactors;
 
     public GildedRose(Item[] items) {
         this.items = items;
-        qualityModificationStrategies = Arrays.asList(
+        agingStrategies = Arrays.asList(
             new AgedBrieAgingStrategy(),
             new LegendaryAgingStrategy(),
             new BackstagePassesAgingStrategy(),
@@ -35,42 +35,50 @@ class GildedRose {
         for (Item item : items) {
             int initialQuality = item.quality;
 
-            qualityModificationStrategies.stream()
-                .filter(strategy -> strategy.isApplicable(item))
-                .findFirst()
-                .ifPresent(strategy -> strategy.accept(item));
+            applyAgingStrategy(item);
 
             int modifiedQuality = item.quality;
-
             int qualityDegradation = modifiedQuality - initialQuality;
 
-            applyAgingFactorIfNecessary(item, qualityDegradation);
+            List<AgingFactor> agingFactorsToApply = getAgingFactorsToApply(item);
+            if (!agingFactorsToApply.isEmpty()) {
+                applyAgingFactors(agingFactorsToApply, item, qualityDegradation);
+            }
+
         }
     }
 
+    private void applyAgingStrategy(Item item) {
+        agingStrategies.stream()
+            .filter(strategy -> strategy.isApplicable(item))
+            .findFirst()
+            .ifPresent(strategy -> strategy.accept(item));
+    }
+
+    private List<AgingFactor> getAgingFactorsToApply(Item item) {
+        return agingFactors.stream()
+            .filter(factor -> factor.isApplicable(item))
+            .collect(Collectors.toList());
+    }
+
     /**
-     * Applies an aging factor to the item if necessary.
+     * Applies aging factors to the item if necessary.
      * The aging factor multiplies the quality degradation that is applied to the item.
      * If multiple aging factors should be applied, the sum of the factors is applied.
      *
-     * @param item               to apply aging factors on
-     * @param qualityDegradation that has already been applied
+     * @param agingFactorsToApply factors that should be applied on top of the existing degradation
+     * @param item                to apply aging factors on
+     * @param qualityDegradation  that has already been applied
      */
-    private void applyAgingFactorIfNecessary(Item item, int qualityDegradation) {
-        List<AgingFactor> agingFactorsToApply = agingFactors.stream()
-            .filter(factor -> factor.isApplicable(item))
-            .collect(Collectors.toList());
+    private void applyAgingFactors(List<AgingFactor> agingFactorsToApply, Item item, int qualityDegradation) {
+        int agingFactor = agingFactorsToApply.stream()
+            .mapToInt(AgingFactor::getAgingFactor)
+            .sum();
 
-        if (!agingFactorsToApply.isEmpty()) {
-            int agingFactor = agingFactorsToApply.stream()
-                .mapToInt(AgingFactor::getAgingFactor)
-                .sum();
-
-            if (qualityDegradation > 0) {
-                item.quality = Math.min(MAX_QUALITY, multiplyQualityWithAgingFactor(item.quality, qualityDegradation, agingFactor));
-            } else {
-                item.quality = Math.max(MIN_QUALITY, multiplyQualityWithAgingFactor(item.quality, qualityDegradation, agingFactor));
-            }
+        if (qualityDegradation > 0) {
+            item.quality = Math.min(MAX_QUALITY, multiplyQualityWithAgingFactor(item.quality, qualityDegradation, agingFactor));
+        } else {
+            item.quality = Math.max(MIN_QUALITY, multiplyQualityWithAgingFactor(item.quality, qualityDegradation, agingFactor));
         }
     }
 
