@@ -122,6 +122,18 @@ class GildedRoseTest {
     }
 
     @Test
+    @DisplayName("updateQuality applies to all items - increment 1 day")
+    void incrementAppliesToAllItems() {
+        Item item1 = new Item("item", 5, 20);
+        Item item2 = new Item("Conjured backstage passes", 15, 20);
+        Item item3 = new Item("Aged Brie", 20, 20);
+        incrementSingleQualityUpdateForItems(item1, item2, item3);
+        assertEquals(19, item1.quality);
+        assertEquals(22, item2.quality);
+        assertEquals(21, item3.quality);
+    }
+
+    @Test
     @DisplayName("An aging factor of 0 reverts the applied degradation")
     void multiplyAgingFactorZero() {
         assertEquals(15, multiplyQualityWithAgingFactor(20, 5, 0));
