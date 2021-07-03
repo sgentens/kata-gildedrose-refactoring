@@ -16,10 +16,19 @@ public class ItemUtils {
     }
 
     /**
-     * Returns whether an item is legendary. Currently, we only know of one legendary item called Sulfuras.
+     * Defines whether an item is legendary. Currently, we only know of one legendary item called Sulfuras.
      */
     public static boolean isLegendary(Item item) {
         // Hopefully we can someday come to an agreement with the goblin, to add a type indicator to items.
         return StringUtils.containsIgnoreCase(item.name, "sulfuras");
+    }
+
+    /**
+     * Defines whether an item is conjured.
+     */
+    public static boolean isConjured(Item item) {
+        // Hopefully we can someday come to an agreement with the goblin, to add a type indicator to items.
+        String itemNameTrimmed = StringUtils.trim(item.name);
+        return StringUtils.startsWithIgnoreCase(itemNameTrimmed, "conjured");
     }
 }

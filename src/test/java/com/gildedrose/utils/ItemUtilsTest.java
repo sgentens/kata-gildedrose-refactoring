@@ -28,4 +28,14 @@ public class ItemUtilsTest {
         assertTrue(ItemUtils.isAfterSellDate(new Item("Sulfuras, Hand of Ragnaros", -5, 20)));
         assertTrue(ItemUtils.isAfterSellDate(new Item("SulFuRAS", -5, 20)));
     }
+
+    @Test
+    void isConjuredItem() {
+        assertTrue(ItemUtils.isConjured(new Item("Conjured Aged Brie", 5, 5)));
+        assertTrue(ItemUtils.isConjured(new Item("conjured Aged Brie", 5, 5)));
+        assertTrue(ItemUtils.isConjured(new Item("  Conjured Sulfuras", 5, 5)));
+        assertTrue(ItemUtils.isConjured(new Item("   ConJuRed SuLfuRas", 5, 5)));
+        assertTrue(ItemUtils.isConjured(new Item("CONJURED STUFF", 5, 5)));
+        assertFalse(ItemUtils.isConjured(new Item("not conjured stuff", 5, 5)));
+    }
 }
