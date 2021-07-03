@@ -2,12 +2,15 @@ package com.gildedrose.modification.quality;
 
 import com.gildedrose.Item;
 
+import static com.gildedrose.utils.ItemUtils.isAfterSellDate;
+
 /**
  * Default modification strategy which executes if no other strategy is applicable.
+ *
  * @author Steven Gentens
  * @since 0.0.1
  */
-public class DefaultQualityModificationStrategy implements  QualityModificationStrategy {
+public class DefaultQualityModificationStrategy implements QualityModificationStrategy {
     @Override
     public boolean isApplicable(Item item) {
         return true;
@@ -49,10 +52,6 @@ public class DefaultQualityModificationStrategy implements  QualityModificationS
         if (item.sellIn < 6) {
             item.quality = item.quality + 1;
         }
-    }
-
-    private boolean isAfterSellDate(Item item) {
-        return item.sellIn < 0;
     }
 
     private boolean isAgedBrie(Item item) {
