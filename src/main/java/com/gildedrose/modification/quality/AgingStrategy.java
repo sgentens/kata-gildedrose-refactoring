@@ -12,5 +12,6 @@ import java.util.function.Consumer;
  * @since 0.0.1
  */
 public interface AgingStrategy extends Consumer<Item> {
+
     boolean isApplicable(Item item);
 }
