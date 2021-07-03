@@ -84,7 +84,7 @@ class GildedRose {
      */
     protected static int multiplyQualityWithAgingFactor(int itemQuality, int qualityDegradation, int agingFactor) {
         if (agingFactor == 0) {
-            return qualityDegradation > 0 ? itemQuality - qualityDegradation : itemQuality + qualityDegradation;
+            return itemQuality + (qualityDegradation * -1);
         }
 
         int agingFactorWithoutAppliedDegradation = agingFactor > 0 ? agingFactor - 1 : agingFactor + 1;

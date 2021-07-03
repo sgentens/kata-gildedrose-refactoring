@@ -125,7 +125,7 @@ class GildedRoseTest {
     @DisplayName("An aging factor of 0 reverts the applied degradation")
     void multiplyAgingFactorZero() {
         assertEquals(15, multiplyQualityWithAgingFactor(20, 5, 0));
-        assertEquals(15, multiplyQualityWithAgingFactor(20, -5, 0));
+        assertEquals(25, multiplyQualityWithAgingFactor(20, -5, 0));
     }
 
     @Test
