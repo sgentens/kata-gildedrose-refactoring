@@ -18,7 +18,7 @@ public class DefaultQualityModificationStrategy implements QualityModificationSt
 
     @Override
     public void accept(Item item) {
-        if (!isAgedBrie(item) && !isBackstagePasses(item)) {
+        if (!isBackstagePasses(item)) {
             if (item.quality > 0 && !isSulfuras(item)) {
                 item.quality = item.quality - 1;
             }
@@ -34,9 +34,7 @@ public class DefaultQualityModificationStrategy implements QualityModificationSt
         }
 
         if (isAfterSellDate(item)) {
-            if (isAgedBrie(item) && item.quality < 50) {
-                item.quality = item.quality + 1;
-            } else if (isBackstagePasses(item)) {
+            if (isBackstagePasses(item)) {
                 item.quality = 0;
             } else if (!isSulfuras(item)) {
                 item.quality = item.quality > 0 ? item.quality - 1 : 0;
