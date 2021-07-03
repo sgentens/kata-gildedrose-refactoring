@@ -6,6 +6,8 @@ import org.apache.commons.lang3.StringUtils;
 import static com.gildedrose.utils.ItemUtils.isAfterSellDate;
 
 /**
+ * Strategy that handles Aged Brie. Aged Brie gets more valuable over time.
+ *
  * @author Steven Gentens
  * @since 0.0.1
  */

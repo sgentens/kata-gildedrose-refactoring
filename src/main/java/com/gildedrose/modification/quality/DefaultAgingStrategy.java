@@ -52,10 +52,6 @@ public class DefaultAgingStrategy implements AgingStrategy {
         }
     }
 
-    private boolean isAgedBrie(Item item) {
-        return "Aged Brie".equals(item.name);
-    }
-
     private boolean isBackstagePasses(Item item) {
         return "Backstage passes to a TAFKAL80ETC concert".equals(item.name);
     }
