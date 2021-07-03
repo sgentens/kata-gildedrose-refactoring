@@ -1,4 +1,4 @@
-package com.gildedrose.aging;
+package com.gildedrose.aging.strategy;
 
 import com.gildedrose.Item;
 import com.gildedrose.utils.ItemUtils;

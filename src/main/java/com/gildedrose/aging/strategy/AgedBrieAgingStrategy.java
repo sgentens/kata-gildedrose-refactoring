@@ -1,8 +1,9 @@
-package com.gildedrose.aging;
+package com.gildedrose.aging.strategy;
 
 import com.gildedrose.Item;
 import org.apache.commons.lang3.StringUtils;
 
+import static com.gildedrose.utils.ItemUtils.MAX_QUALITY;
 import static com.gildedrose.utils.ItemUtils.isAfterSellDate;
 
 /**
@@ -20,13 +21,13 @@ public class AgedBrieAgingStrategy implements AgingStrategy {
 
     @Override
     public void accept(Item item) {
-        if (item.quality < 50) {
+        if (item.quality < MAX_QUALITY) {
             item.quality = item.quality + 1;
         }
 
         item.sellIn = item.sellIn - 1;
 
-        if (isAfterSellDate(item) && item.quality < 50) {
+        if (isAfterSellDate(item) && item.quality < MAX_QUALITY) {
             item.quality = item.quality + 1;
         }
     }

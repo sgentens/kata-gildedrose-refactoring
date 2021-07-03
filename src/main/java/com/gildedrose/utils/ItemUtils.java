@@ -11,6 +11,9 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class ItemUtils {
 
+    public static final int MAX_QUALITY = 50;
+    public static final int MIN_QUALITY = 0;
+
     public static boolean isAfterSellDate(Item item) {
         return item.sellIn < 0;
     }

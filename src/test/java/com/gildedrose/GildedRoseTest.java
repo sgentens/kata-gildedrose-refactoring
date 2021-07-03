@@ -1,13 +1,17 @@
 package com.gildedrose;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static com.gildedrose.GildedRose.multiplyQualityWithAgingFactor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GildedRoseTest {
+
+    public static final String CONJURED = "Conjured";
 
     public static final String DEXTERITY_VEST = "+5 Dexterity Vest";
     public static final String AGED_BRIE = "Aged Brie";
@@ -87,6 +91,55 @@ class GildedRoseTest {
         Item item = new Item(name, sellInDays, initialQuality);
         incrementSingleQualityUpdateForItems(item);
         assertEquals(expectedQuality, item.quality);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+        CONJURED + " " + DEXTERITY_VEST + ", 15, 20, 18",
+        CONJURED + " " + DEXTERITY_VEST + ", 5, 20, 18",
+        CONJURED + " " + DEXTERITY_VEST + ", 0, 20, 16",
+        CONJURED + " " + DEXTERITY_VEST + ", -5, 20, 16",
+        CONJURED + " " + AGED_BRIE + ", 15, 20, 22",
+        CONJURED + " " + AGED_BRIE + ", 5, 20, 22",
+        CONJURED + " " + AGED_BRIE + ", 0, 20, 24",
+        CONJURED + " " + AGED_BRIE + ", -5, 20, 24",
+        CONJURED + " " + ELIXIR_MONGOOSE + ", 15, 20, 18",
+        CONJURED + " " + ELIXIR_MONGOOSE + ", 5, 20, 18",
+        CONJURED + " " + ELIXIR_MONGOOSE + ", 0, 20, 16",
+        CONJURED + " " + ELIXIR_MONGOOSE + ", -5, 20, 16",
+        CONJURED + " " + BACKSTAGE_PASSES + ", 15, 20, 22",
+        CONJURED + " " + BACKSTAGE_PASSES + ", 10, 20, 24",
+        CONJURED + " " + BACKSTAGE_PASSES + ", 5, 20, 26",
+        CONJURED + " " + BACKSTAGE_PASSES + ", 0, 20, 0",
+        CONJURED + " " + BACKSTAGE_PASSES + ", -5, 20, 0",
+        "'" + CONJURED + " " + SULFURAS + "', -5, 20, 20",
+    })
+    @DisplayName("Conjured items degrade twice as fast - increment 1 day")
+    void conjuredItems(String name, int sellInDays, int initialQuality, int expectedQuality) {
+        Item item = new Item(name, sellInDays, initialQuality);
+        incrementSingleQualityUpdateForItems(item);
+        assertEquals(expectedQuality, item.quality);
+    }
+
+    @Test
+    @DisplayName("An aging factor of 0 reverts the applied degradation")
+    void multiplyAgingFactorZero() {
+        assertEquals(15, multiplyQualityWithAgingFactor(20, 5, 0));
+        assertEquals(15, multiplyQualityWithAgingFactor(20, -5, 0));
+    }
+
+    @Test
+    @DisplayName("A positive aging factor applies its factor minus the already applied degradation")
+    void multiplyAgingFactorPositive() {
+        assertEquals(25, multiplyQualityWithAgingFactor(20, 5, 2));
+        assertEquals(15, multiplyQualityWithAgingFactor(20, -5, 2));
+    }
+
+    @Test
+    @DisplayName("A negative aging factor applies its factor plus the already applied degradation")
+    void multiplyAgingFactorNegative() {
+        assertEquals(15, multiplyQualityWithAgingFactor(20, 5, -2));
+        assertEquals(25, multiplyQualityWithAgingFactor(20, -5, -2));
     }
 
     private void incrementSingleQualityUpdateForItems(Item... items) {
