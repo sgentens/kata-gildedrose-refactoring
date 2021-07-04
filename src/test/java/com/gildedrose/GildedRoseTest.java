@@ -6,8 +6,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static com.gildedrose.GildedRose.multiplyQualityWithAgingFactor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+//import static com.gildedrose.GildedRose.multiplyQualityWithAgingFactor;
 
 class GildedRoseTest {
 
@@ -131,27 +132,6 @@ class GildedRoseTest {
         assertEquals(19, item1.quality);
         assertEquals(22, item2.quality);
         assertEquals(21, item3.quality);
-    }
-
-    @Test
-    @DisplayName("An aging factor of 0 reverts the applied degradation")
-    void multiplyAgingFactorZero() {
-        assertEquals(15, multiplyQualityWithAgingFactor(20, 5, 0));
-        assertEquals(25, multiplyQualityWithAgingFactor(20, -5, 0));
-    }
-
-    @Test
-    @DisplayName("A positive aging factor applies its factor minus the already applied degradation")
-    void multiplyAgingFactorPositive() {
-        assertEquals(25, multiplyQualityWithAgingFactor(20, 5, 2));
-        assertEquals(15, multiplyQualityWithAgingFactor(20, -5, 2));
-    }
-
-    @Test
-    @DisplayName("A negative aging factor applies its factor plus the already applied degradation")
-    void multiplyAgingFactorNegative() {
-        assertEquals(15, multiplyQualityWithAgingFactor(20, 5, -2));
-        assertEquals(25, multiplyQualityWithAgingFactor(20, -5, -2));
     }
 
     private void incrementSingleQualityUpdateForItems(Item... items) {

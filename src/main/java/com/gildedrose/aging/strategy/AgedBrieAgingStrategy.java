@@ -1,10 +1,10 @@
 package com.gildedrose.aging.strategy;
 
 import com.gildedrose.Item;
+import com.gildedrose.utils.ItemUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import static com.gildedrose.utils.ItemUtils.MAX_QUALITY;
-import static com.gildedrose.utils.ItemUtils.isAfterSellDate;
 
 /**
  * Strategy that handles Aged Brie. Aged Brie gets more valuable over time.
@@ -27,7 +27,7 @@ public class AgedBrieAgingStrategy implements AgingStrategy {
 
         item.sellIn = item.sellIn - 1;
 
-        if (isAfterSellDate(item) && item.quality < MAX_QUALITY) {
+        if (ItemUtils.isAfterSellDate(item) && item.quality < MAX_QUALITY) {
             item.quality = item.quality + 1;
         }
     }

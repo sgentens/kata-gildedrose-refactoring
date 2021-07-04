@@ -1,9 +1,11 @@
 package com.gildedrose.aging.strategy;
 
 import com.gildedrose.Item;
+import com.gildedrose.utils.ItemUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import static com.gildedrose.utils.ItemUtils.*;
+import static com.gildedrose.utils.ItemUtils.MAX_QUALITY;
+import static com.gildedrose.utils.ItemUtils.MIN_QUALITY;
 
 /**
  * Strategy that applies to backstage passes. Backstage passes get more valuable over time,
@@ -35,7 +37,7 @@ public class BackstagePassesAgingStrategy implements AgingStrategy {
 
         item.sellIn = item.sellIn - 1;
 
-        if (isAfterSellDate(item)) {
+        if (ItemUtils.isAfterSellDate(item)) {
             item.quality = MIN_QUALITY;
         }
     }

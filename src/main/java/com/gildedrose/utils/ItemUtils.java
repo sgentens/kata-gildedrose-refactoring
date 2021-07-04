@@ -22,7 +22,7 @@ public class ItemUtils {
      * Defines whether an item is legendary. Currently, we only know of one legendary item called Sulfuras.
      */
     public static boolean isLegendary(Item item) {
-        // Hopefully we can someday come to an agreement with the goblin, to add a type indicator to items.
+        // Hopefully we can someday come to an agreement with the goblin, to add a rarity indicator to items.
         return StringUtils.containsIgnoreCase(item.name, "sulfuras");
     }
 

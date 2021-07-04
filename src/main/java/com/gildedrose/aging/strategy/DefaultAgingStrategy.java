@@ -1,9 +1,9 @@
 package com.gildedrose.aging.strategy;
 
 import com.gildedrose.Item;
+import com.gildedrose.utils.ItemUtils;
 
 import static com.gildedrose.utils.ItemUtils.MIN_QUALITY;
-import static com.gildedrose.utils.ItemUtils.isAfterSellDate;
 
 /**
  * Default modification strategy which executes if no other strategy is applicable.
@@ -25,7 +25,7 @@ public class DefaultAgingStrategy implements AgingStrategy {
 
         item.sellIn = item.sellIn - 1;
 
-        if (isAfterSellDate(item)) {
+        if (ItemUtils.isAfterSellDate(item)) {
             item.quality = item.quality > MIN_QUALITY ? item.quality - 1 : MIN_QUALITY;
         }
     }
