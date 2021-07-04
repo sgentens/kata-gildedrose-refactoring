@@ -61,7 +61,7 @@ public class SimpleAgingFactorTest {
         assertEquals(item.quality, expectedQuality);
     }
 
-    abstract class AlwaysApplicableSimpleAgingFactor extends SimpleAgingFactor {
+    static abstract class AlwaysApplicableSimpleAgingFactor extends SimpleAgingFactor {
         @Override
         public boolean isApplicable(Item item) {
             return true;
