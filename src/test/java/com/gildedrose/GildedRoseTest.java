@@ -83,7 +83,7 @@ class GildedRoseTest {
         DEXTERITY_VEST + ", 15, 50, 49",
         DEXTERITY_VEST + ", 15, 55, 54",
         AGED_BRIE + ", 15, 50, 50",
-        AGED_BRIE + ", 15, 55, 55",
+        AGED_BRIE + ", 15, 55, 50",
         ELIXIR_MONGOOSE + ", 15, 50, 49",
         ELIXIR_MONGOOSE + ", 15, 55, 54",
         BACKSTAGE_PASSES + ", 15, 50, 50",

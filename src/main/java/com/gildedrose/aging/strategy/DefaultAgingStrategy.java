@@ -19,17 +19,13 @@ public class DefaultAgingStrategy implements AgingStrategy {
 
     @Override
     public void accept(Item item) {
-        int increment = 0;
-        if (item.quality > MIN_QUALITY) {
-            increment -= 1;
-        }
-
         item.sellIn = item.sellIn - 1;
 
+        int increment = -1;
         if (ItemUtils.isAfterSellDate(item)) {
             increment -= 1;
         }
 
-        item.quality = Math.max(0, item.quality + increment);
+        item.quality = Math.max(MIN_QUALITY, item.quality + increment);
     }
 }

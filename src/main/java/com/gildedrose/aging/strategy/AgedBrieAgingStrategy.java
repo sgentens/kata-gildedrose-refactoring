@@ -21,14 +21,13 @@ public class AgedBrieAgingStrategy implements AgingStrategy {
 
     @Override
     public void accept(Item item) {
-        if (item.quality < MAX_QUALITY) {
-            item.quality = item.quality + 1;
-        }
-
         item.sellIn = item.sellIn - 1;
 
-        if (ItemUtils.isAfterSellDate(item) && item.quality < MAX_QUALITY) {
-            item.quality = item.quality + 1;
+        int increment = 1;
+        if (ItemUtils.isAfterSellDate(item)) {
+            increment += 1;
         }
+
+        item.quality = Math.min(MAX_QUALITY, item.quality + increment);
     }
 }
