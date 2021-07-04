@@ -9,7 +9,7 @@ import com.gildedrose.utils.ItemUtils;
  * @author Steven Gentens
  * @since 0.0.1
  */
-public class ConjuredAgingFactor extends BaseAgingFactor {
+public class ConjuredAgingFactor extends SimpleAgingFactor {
     @Override
     public boolean isApplicable(Item item) {
         return ItemUtils.isConjured(item);

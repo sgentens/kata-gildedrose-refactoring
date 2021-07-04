@@ -7,10 +7,13 @@ import static com.gildedrose.utils.ItemUtils.MAX_QUALITY;
 import static com.gildedrose.utils.ItemUtils.MIN_QUALITY;
 
 /**
+ * Applies the aging factor based on a fixed factor to the item. If the remaining degradation that is applied
+ * would cross an item quality boundary (e.g. min/max quality), the quality is set to said boundary.
+ *
  * @author Steven Gentens
  * @since 0.0.1
  */
-public abstract class BaseAgingFactor implements AgingFactor {
+public abstract class SimpleAgingFactor implements AgingFactor {
 
     /**
      * The aging factor that should be applied when calculation the new quality degradation.
