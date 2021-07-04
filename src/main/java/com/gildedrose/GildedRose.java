@@ -11,8 +11,9 @@ import java.util.List;
 class GildedRose {
 
     Item[] items;
-    List<AgingStrategy> agingStrategies;
-    List<AgingFactor> agingFactors;
+
+    private List<AgingStrategy> agingStrategies;
+    private List<AgingFactor> agingFactors;
 
     public GildedRose(Item[] items) {
         this.items = items;
