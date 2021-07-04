@@ -38,6 +38,8 @@ public class BackstagePassesAgingStrategyTest {
         "0,50",
         "-5,49",
         "-5,50",
+        "10,49",
+        "5,49",
     })
     void maximumQuality(int sellIn, int initialQuality) {
         Item item = new Item("backstage pass", sellIn, initialQuality);
