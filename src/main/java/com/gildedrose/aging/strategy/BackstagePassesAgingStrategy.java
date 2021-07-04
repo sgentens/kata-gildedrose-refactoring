@@ -23,17 +23,20 @@ public class BackstagePassesAgingStrategy implements AgingStrategy {
 
     @Override
     public void accept(Item item) {
+        int increment = 0;
         if (item.quality < MAX_QUALITY) {
-            item.quality = item.quality + 1;
+            increment += 1;
 
             if (item.sellIn < 11) {
-                item.quality = item.quality + 1;
+                increment += 1;
             }
 
             if (item.sellIn < 6) {
-                item.quality = item.quality + 1;
+                increment += 1;
             }
         }
+
+        item.quality = Math.min(MAX_QUALITY, item.quality + increment);
 
         item.sellIn = item.sellIn - 1;
 
