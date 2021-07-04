@@ -15,3 +15,4 @@ These tests are based on the original logic and should match the existing bounda
 # Not implemented
 - Min/Max validation on the input for the exercise, so currently it is possible to register items which have have more or less than 0 or 50 quality.
 - No exclusions for conjured items, even though it might seem unlikely that it would apply to items which actually increase in quality.
+- No combination of aging strategies or aging factors, as that is left unspecified in the boundary conditions
