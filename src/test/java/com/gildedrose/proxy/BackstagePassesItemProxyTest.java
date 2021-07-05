@@ -21,13 +21,13 @@ public class BackstagePassesItemProxyTest {
         "8,50,50",
         "3,50,50",
         "20,27,28",
-        "12,27,29",
+        "12,27,28",
         "8,27,29",
         "3,27,30",
         "20,0,1",
         "16,0,1",
-        "15,0,2",
-        "12,0,2",
+        "15,0,1",
+        "12,0,1",
         "8,0,2",
         "5,0,3",
         "3,0,3",
@@ -39,7 +39,7 @@ public class BackstagePassesItemProxyTest {
         Item item = new Item("test", sellIn, quality);
         ItemProxy proxy = new BackstagePassesItemProxy(item);
         proxy.incrementSellInAndUpdateQuality();
-        verifySellInAndQuality(item, 4, expectedQuality);
+        verifySellInAndQuality(item, sellIn - 1, expectedQuality);
     }
 
     @Test
@@ -78,27 +78,27 @@ public class BackstagePassesItemProxyTest {
         Item item = new Item("test", 5, 10);
         ItemProxy proxy = new BackstagePassesItemProxy(item);
         proxy.updateQuality();
-        verifySellInAndQuality(item, 5, 11);
+        verifySellInAndQuality(item, 5, 12);
     }
 
     @Test
-    void increasesQualityByOneFifteenDaysBeforeSellDate() {
-        Item item = new Item("test", 15, 10);
-        ItemProxy proxy = new BackstagePassesItemProxy(item);
-        assertEquals(1, proxy.calculateNextQualityDegradation());
-    }
-
-    @Test
-    void increasesQualityByTwoTenDaysBeforeSellDate() {
+    void increasesQualityByOneMoreThanOrEqualToTenDaysBeforeSellDate() {
         Item item = new Item("test", 10, 10);
         ItemProxy proxy = new BackstagePassesItemProxy(item);
         assertEquals(1, proxy.calculateNextQualityDegradation());
     }
 
     @Test
-    void increasesQualityByThreeFiveDaysBeforeSellDate() {
-        Item item = new Item("test", 5, 10);
+    void increasesQualityByTwoFromNineBeforeSellDate() {
+        Item item = new Item("test", 9, 10);
         ItemProxy proxy = new BackstagePassesItemProxy(item);
-        assertEquals(1, proxy.calculateNextQualityDegradation());
+        assertEquals(2, proxy.calculateNextQualityDegradation());
+    }
+
+    @Test
+    void increasesQualityByThreeFromFourDaysBeforeSellDate() {
+        Item item = new Item("test", 4, 10);
+        ItemProxy proxy = new BackstagePassesItemProxy(item);
+        assertEquals(3, proxy.calculateNextQualityDegradation());
     }
 }

@@ -10,8 +10,8 @@ import com.gildedrose.Item;
  */
 public abstract class ItemProxy {
 
-    private static final int MAX_QUALITY = 50;
-    private static final int MIN_QUALITY = 0;
+    static final int MAX_QUALITY = 50;
+    static final int MIN_QUALITY = 0;
 
     private final Item item;
 
@@ -19,10 +19,18 @@ public abstract class ItemProxy {
         this.item = item;
     }
 
+    /**
+     * Increments the sell date and then applies the quality degradation to the item.
+     * Should the min/max quality be crossed, it gets reset to said boundary.
+     */
     public void incrementSellInAndUpdateQuality() {
         nextDay();
         updateQuality();
         resetToBoundaryIfNecessary();
+    }
+
+    final int getSellIn() {
+        return item.sellIn;
     }
 
     final boolean isAfterSellDate() {

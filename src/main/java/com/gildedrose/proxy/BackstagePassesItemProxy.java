@@ -14,6 +14,16 @@ public class BackstagePassesItemProxy extends ItemProxy {
 
     @Override
     int calculateNextQualityDegradation() {
-        return 0;
+        if (isAfterSellDate()) {
+            // degrade more than the max so that we get reset to 0;
+            return -1 * (MAX_QUALITY + 1);
+        }
+        if (getSellIn() < 5) {
+            return 3;
+        }
+        if (getSellIn() < 10) {
+            return 2;
+        }
+        return 1;
     }
 }
