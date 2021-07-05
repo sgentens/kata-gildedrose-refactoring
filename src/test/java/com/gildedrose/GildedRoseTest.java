@@ -1,6 +1,7 @@
 package com.gildedrose;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -8,6 +9,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GildedRoseTest {
+
+    public static final String CONJURED = "Conjured";
 
     public static final String DEXTERITY_VEST = "+5 Dexterity Vest";
     public static final String AGED_BRIE = "Aged Brie";
@@ -34,6 +37,8 @@ class GildedRoseTest {
         BACKSTAGE_PASSES + ", 5, 20, 23",
         BACKSTAGE_PASSES + ", 0, 20, 0",
         BACKSTAGE_PASSES + ", -5, 20, 0",
+        BACKSTAGE_PASSES + ", 10, 49, 51",
+        BACKSTAGE_PASSES + ", 5, 49, 52",
     })
     @DisplayName("increment 1 day")
     void incrementOneDay(String name, int sellInDays, int initialQuality, int expectedQuality) {
@@ -87,6 +92,46 @@ class GildedRoseTest {
         Item item = new Item(name, sellInDays, initialQuality);
         incrementSingleQualityUpdateForItems(item);
         assertEquals(expectedQuality, item.quality);
+    }
+
+//    @ParameterizedTest
+//    @CsvSource({
+//        CONJURED + " " + DEXTERITY_VEST + ", 15, 20, 18",
+//        CONJURED + " " + DEXTERITY_VEST + ", 5, 20, 18",
+//        CONJURED + " " + DEXTERITY_VEST + ", 0, 20, 16",
+//        CONJURED + " " + DEXTERITY_VEST + ", -5, 20, 16",
+//        CONJURED + " " + AGED_BRIE + ", 15, 20, 22",
+//        CONJURED + " " + AGED_BRIE + ", 5, 20, 22",
+//        CONJURED + " " + AGED_BRIE + ", 0, 20, 24",
+//        CONJURED + " " + AGED_BRIE + ", -5, 20, 24",
+//        CONJURED + " " + ELIXIR_MONGOOSE + ", 15, 20, 18",
+//        CONJURED + " " + ELIXIR_MONGOOSE + ", 5, 20, 18",
+//        CONJURED + " " + ELIXIR_MONGOOSE + ", 0, 20, 16",
+//        CONJURED + " " + ELIXIR_MONGOOSE + ", -5, 20, 16",
+//        CONJURED + " " + BACKSTAGE_PASSES + ", 15, 20, 22",
+//        CONJURED + " " + BACKSTAGE_PASSES + ", 10, 20, 24",
+//        CONJURED + " " + BACKSTAGE_PASSES + ", 5, 20, 26",
+//        CONJURED + " " + BACKSTAGE_PASSES + ", 0, 20, 0",
+//        CONJURED + " " + BACKSTAGE_PASSES + ", -5, 20, 0",
+//        "'" + CONJURED + " " + SULFURAS + "', -5, 20, 20",
+//    })
+//    @DisplayName("Conjured items degrade twice as fast - increment 1 day")
+//    void conjuredItems(String name, int sellInDays, int initialQuality, int expectedQuality) {
+//        Item item = new Item(name, sellInDays, initialQuality);
+//        incrementSingleQualityUpdateForItems(item);
+//        assertEquals(expectedQuality, item.quality);
+//    }
+
+    @Test
+    @DisplayName("updateQuality applies to all items - increment 1 day")
+    void incrementAppliesToAllItems() {
+        Item item1 = new Item("item", 5, 20);
+//        Item item2 = new Item("Conjured backstage passes", 15, 20);
+        Item item3 = new Item("Aged Brie", 20, 20);
+        incrementSingleQualityUpdateForItems(item1, /*item2,*/ item3);
+        assertEquals(19, item1.quality);
+//        assertEquals(22, item2.quality);
+        assertEquals(21, item3.quality);
     }
 
     private void incrementSingleQualityUpdateForItems(Item... items) {
