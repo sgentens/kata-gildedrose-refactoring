@@ -81,11 +81,11 @@ class GildedRoseTest {
         DEXTERITY_VEST + ", 15, 50, 49",
         DEXTERITY_VEST + ", 15, 55, 50",
         AGED_BRIE + ", 15, 50, 50",
-        AGED_BRIE + ", 15, 55, 55",
+        AGED_BRIE + ", 15, 55, 50",
         ELIXIR_MONGOOSE + ", 15, 50, 49",
         ELIXIR_MONGOOSE + ", 15, 55, 50",
         BACKSTAGE_PASSES + ", 15, 50, 50",
-        BACKSTAGE_PASSES + ", 15, 55, 55",
+        BACKSTAGE_PASSES + ", 15, 55, 50",
     })
     @DisplayName("Quality is never above 50")
     void qualityNeverMoreThanFifty(String name, int sellInDays, int initialQuality, int expectedQuality) {

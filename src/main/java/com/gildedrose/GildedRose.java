@@ -3,6 +3,7 @@ package com.gildedrose;
 import com.gildedrose.proxy.AgedBrieItemProxy;
 import com.gildedrose.proxy.BackstagePassesItemProxy;
 import com.gildedrose.proxy.GeneralItemProxy;
+import com.gildedrose.proxy.SulfurasItemProxy;
 
 class GildedRose {
     Item[] items;
@@ -13,14 +14,14 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            if (!isSulfuras(item)) {
-                if (!isAgedBrie(item) && !isBackstagePasses(item)) {
-                    new GeneralItemProxy(item).incrementSellInAndUpdateQuality();
-                } else if (isAgedBrie(item)) {
-                    new AgedBrieItemProxy(item).incrementSellInAndUpdateQuality();
-                } else {
-                    new BackstagePassesItemProxy(item).incrementSellInAndUpdateQuality();
-                }
+            if (isSulfuras(item)) {
+                new SulfurasItemProxy(item).incrementSellInAndUpdateQuality();
+            } else if (isAgedBrie(item)) {
+                new AgedBrieItemProxy(item).incrementSellInAndUpdateQuality();
+            } else if (isBackstagePasses(item)) {
+                new BackstagePassesItemProxy(item).incrementSellInAndUpdateQuality();
+            } else {
+                new GeneralItemProxy(item).incrementSellInAndUpdateQuality();
             }
         }
     }

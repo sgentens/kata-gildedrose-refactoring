@@ -8,7 +8,7 @@ import com.gildedrose.Item;
  */
 public final class SulfurasItemProxy extends ItemProxy {
 
-    SulfurasItemProxy(Item item) {
+    public SulfurasItemProxy(Item item) {
         super(item);
     }
 
