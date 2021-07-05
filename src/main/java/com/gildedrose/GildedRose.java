@@ -1,5 +1,6 @@
 package com.gildedrose;
 
+import com.gildedrose.proxy.AgedBrieItemProxy;
 import com.gildedrose.proxy.GeneralItemProxy;
 
 class GildedRose {
@@ -15,27 +16,19 @@ class GildedRose {
                 if (!isAgedBrie(item) && !isBackstagePasses(item)) {
                     new GeneralItemProxy(item).incrementSellInAndUpdateQuality();
                 } else if (item.quality < 50) {
-                    item.sellIn = item.sellIn - 1;
-                    updateQualityAgedBrieOrBackstagePass(item);
+                    if (isAgedBrie(item)) {
+                        new AgedBrieItemProxy(item).incrementSellInAndUpdateQuality();
+                    } else {
+                        item.sellIn = item.sellIn - 1;
+                        updateQualityAgedBrieOrBackstagePass(item);
+                    }
                 }
             }
         }
     }
 
     private void updateQualityAgedBrieOrBackstagePass(Item item) {
-        updateAgedBrie(item);
         updateBackstagePasses(item);
-    }
-
-    private void updateAgedBrie(Item item) {
-        if (isAgedBrie(item)) {
-            item.quality = item.quality + 1;
-            if (isAfterSellDate(item)) {
-                if (item.quality < 50) {
-                    item.quality = item.quality + 1;
-                }
-            }
-        }
     }
 
     private void updateBackstagePasses(Item item) {

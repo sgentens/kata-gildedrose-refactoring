@@ -62,7 +62,7 @@ class GildedRoseTest {
     @CsvSource({
         DEXTERITY_VEST + ", 15, 0, 0",
         DEXTERITY_VEST + ", 15, -4, 0",
-        AGED_BRIE + ", 15, -5, -4",
+        AGED_BRIE + ", 15, -5, 0",
         AGED_BRIE + ", 15, 0, 1",
         ELIXIR_MONGOOSE + ", 15, 0, 0",
         ELIXIR_MONGOOSE + ", 15, -4, 0",

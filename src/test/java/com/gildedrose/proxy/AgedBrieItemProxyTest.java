@@ -41,7 +41,7 @@ public class AgedBrieItemProxyTest {
     @CsvSource({
         "50,50",
         "27,29",
-        "10,11",
+        "10,12",
         "3,5",
         "0,2",
     })

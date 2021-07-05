@@ -8,12 +8,15 @@ import com.gildedrose.Item;
  */
 public class AgedBrieItemProxy extends ItemProxy {
 
-    AgedBrieItemProxy(Item item) {
+    public AgedBrieItemProxy(Item item) {
         super(item);
     }
 
     @Override
     int calculateNextQualityDegradation() {
-        return 0;
+        if (isAfterSellDate()) {
+            return 2;
+        }
+        return 1;
     }
 }
