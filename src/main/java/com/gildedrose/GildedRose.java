@@ -27,30 +27,6 @@ class GildedRose {
         }
     }
 
-    private void updateQualityAgedBrieOrBackstagePass(Item item) {
-        updateBackstagePasses(item);
-    }
-
-    private void updateBackstagePasses(Item item) {
-        if (isBackstagePasses(item)) {
-            item.quality = item.quality + 1;
-            if (item.sellIn < 11) {
-                item.quality = item.quality + 1;
-            }
-
-            if (item.sellIn < 6) {
-                item.quality = item.quality + 1;
-            }
-            if (isAfterSellDate(item)) {
-                item.quality = 0;
-            }
-        }
-    }
-
-    private boolean isAfterSellDate(Item item) {
-        return item.sellIn < 0;
-    }
-
     private boolean isAgedBrie(Item item) {
         return "Aged Brie".equals(item.name);
     }
