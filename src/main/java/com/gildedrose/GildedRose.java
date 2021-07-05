@@ -16,12 +16,10 @@ class GildedRose {
             if (!isSulfuras(item)) {
                 if (!isAgedBrie(item) && !isBackstagePasses(item)) {
                     new GeneralItemProxy(item).incrementSellInAndUpdateQuality();
-                } else if (item.quality < 50) {
-                    if (isAgedBrie(item)) {
-                        new AgedBrieItemProxy(item).incrementSellInAndUpdateQuality();
-                    } else {
-                        new BackstagePassesItemProxy(item).incrementSellInAndUpdateQuality();
-                    }
+                } else if (isAgedBrie(item)) {
+                    new AgedBrieItemProxy(item).incrementSellInAndUpdateQuality();
+                } else {
+                    new BackstagePassesItemProxy(item).incrementSellInAndUpdateQuality();
                 }
             }
         }
