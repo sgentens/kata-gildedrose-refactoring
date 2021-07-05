@@ -25,6 +25,10 @@ public abstract class ItemProxy {
         resetToBoundaryIfNecessary();
     }
 
+    final boolean isAfterSellDate() {
+        return item.sellIn < 0;
+    }
+
     /**
      * Indicates the item was not sold and moves closer to the sale deadline.
      */

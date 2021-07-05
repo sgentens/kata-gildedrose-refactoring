@@ -61,11 +61,11 @@ class GildedRoseTest {
     @ParameterizedTest
     @CsvSource({
         DEXTERITY_VEST + ", 15, 0, 0",
-        DEXTERITY_VEST + ", 15, -4, -4",
+        DEXTERITY_VEST + ", 15, -4, 0",
         AGED_BRIE + ", 15, -5, -4",
         AGED_BRIE + ", 15, 0, 1",
         ELIXIR_MONGOOSE + ", 15, 0, 0",
-        ELIXIR_MONGOOSE + ", 15, -4, -4",
+        ELIXIR_MONGOOSE + ", 15, -4, 0",
         BACKSTAGE_PASSES + ", 15, -5, -4",
         BACKSTAGE_PASSES + ", 15, 0, 1",
     })
@@ -79,11 +79,11 @@ class GildedRoseTest {
     @ParameterizedTest
     @CsvSource({
         DEXTERITY_VEST + ", 15, 50, 49",
-        DEXTERITY_VEST + ", 15, 55, 54",
+        DEXTERITY_VEST + ", 15, 55, 50",
         AGED_BRIE + ", 15, 50, 50",
         AGED_BRIE + ", 15, 55, 55",
         ELIXIR_MONGOOSE + ", 15, 50, 49",
-        ELIXIR_MONGOOSE + ", 15, 55, 54",
+        ELIXIR_MONGOOSE + ", 15, 55, 50",
         BACKSTAGE_PASSES + ", 15, 50, 50",
         BACKSTAGE_PASSES + ", 15, 55, 55",
     })

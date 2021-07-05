@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import com.gildedrose.proxy.GeneralItemProxy;
+
 class GildedRose {
     Item[] items;
 
@@ -10,11 +12,10 @@ class GildedRose {
     public void updateQuality() {
         for (Item item : items) {
             if (!isSulfuras(item)) {
-                item.sellIn = item.sellIn - 1;
-
                 if (!isAgedBrie(item) && !isBackstagePasses(item)) {
-                    updateQualityGeneralItem(item);
+                    new GeneralItemProxy(item).incrementSellInAndUpdateQuality();
                 } else if (item.quality < 50) {
+                    item.sellIn = item.sellIn - 1;
                     updateQualityAgedBrieOrBackstagePass(item);
                 }
             }
@@ -50,15 +51,6 @@ class GildedRose {
             if (isAfterSellDate(item)) {
                 item.quality = 0;
             }
-        }
-    }
-
-    private void updateQualityGeneralItem(Item item) {
-        if (item.quality > 0) {
-            item.quality = item.quality - 1;
-        }
-        if (isAfterSellDate(item)) {
-            item.quality = item.quality > 0 ? item.quality - 1 : 0;
         }
     }
 

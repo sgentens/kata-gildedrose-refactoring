@@ -29,6 +29,14 @@ public class GeneralItemProxyTest {
         verifySellInAndQuality(item, 4, expectedQuality);
     }
 
+    @Test
+    void sellInZeroMeansTheItemWasNotSoldToday() {
+        Item item = new Item("test", 0, 10);
+        ItemProxy proxy = new GeneralItemProxy(item);
+        proxy.incrementSellInAndUpdateQuality();
+        verifySellInAndQuality(item, -1, 8);
+    }
+
     @ParameterizedTest
     @CsvSource({
         "50,48",
@@ -73,12 +81,4 @@ public class GeneralItemProxyTest {
         ItemProxy proxy = new GeneralItemProxy(item);
         assertEquals(-2, proxy.calculateNextQualityDegradation());
     }
-
-    @Test
-    void sellInZeroMeansTheItemWasNotSoldToday() {
-        Item item = new Item("test", 0, 10);
-        ItemProxy proxy = new GeneralItemProxy(item);
-        assertEquals(-2, proxy.calculateNextQualityDegradation());
-    }
-
 }

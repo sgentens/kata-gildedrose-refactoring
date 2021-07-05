@@ -14,6 +14,9 @@ public class GeneralItemProxy extends ItemProxy {
 
     @Override
     int calculateNextQualityDegradation() {
-        return 0;
+        if (isAfterSellDate()) {
+            return -2;
+        }
+        return -1;
     }
 }
