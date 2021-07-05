@@ -1,6 +1,7 @@
 package com.gildedrose;
 
 import com.gildedrose.proxy.AgedBrieItemProxy;
+import com.gildedrose.proxy.BackstagePassesItemProxy;
 import com.gildedrose.proxy.GeneralItemProxy;
 
 class GildedRose {
@@ -19,8 +20,7 @@ class GildedRose {
                     if (isAgedBrie(item)) {
                         new AgedBrieItemProxy(item).incrementSellInAndUpdateQuality();
                     } else {
-                        item.sellIn = item.sellIn - 1;
-                        updateQualityAgedBrieOrBackstagePass(item);
+                        new BackstagePassesItemProxy(item).incrementSellInAndUpdateQuality();
                     }
                 }
             }

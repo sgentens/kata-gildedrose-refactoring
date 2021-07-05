@@ -37,8 +37,8 @@ class GildedRoseTest {
         BACKSTAGE_PASSES + ", 5, 20, 23",
         BACKSTAGE_PASSES + ", 0, 20, 0",
         BACKSTAGE_PASSES + ", -5, 20, 0",
-        BACKSTAGE_PASSES + ", 10, 49, 51",
-        BACKSTAGE_PASSES + ", 5, 49, 52",
+        BACKSTAGE_PASSES + ", 10, 49, 50",
+        BACKSTAGE_PASSES + ", 5, 49, 50",
     })
     @DisplayName("increment 1 day")
     void incrementOneDay(String name, int sellInDays, int initialQuality, int expectedQuality) {
@@ -66,7 +66,7 @@ class GildedRoseTest {
         AGED_BRIE + ", 15, 0, 1",
         ELIXIR_MONGOOSE + ", 15, 0, 0",
         ELIXIR_MONGOOSE + ", 15, -4, 0",
-        BACKSTAGE_PASSES + ", 15, -5, -4",
+        BACKSTAGE_PASSES + ", 15, -5, 0",
         BACKSTAGE_PASSES + ", 15, 0, 1",
     })
     @DisplayName("Quality of an item is never negative")
