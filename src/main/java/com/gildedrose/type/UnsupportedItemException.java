@@ -9,6 +9,6 @@ import com.gildedrose.Item;
 public class UnsupportedItemException extends RuntimeException {
 
     UnsupportedItemException(Item item) {
-        super("Unable to convert item '" + item.name + "' to an ItemProxy. No matching ItemType");
+        super("Unable to convert item '" + item.name + "' to an ItemProxy. No matching ItemType.");
     }
 }
