@@ -52,6 +52,26 @@ public class AgedBrieItemProxyTest {
         verifySellInAndQuality(item, -6, expectedQuality);
     }
 
+    @ParameterizedTest
+    @CsvSource({
+        "Conjured test,-5,50,50",
+        " conjured test,-5,27,31",
+        "CoNJuReD test,-5,10,14",
+        " \tCoNJuReD test,-5,3,7",
+        " conjured test,-5,0,4",
+        "Conjured test,5,50,50",
+        " conjured test,5,27,29",
+        "CoNJuReD test,5,10,12",
+        " \tCoNJuReD test,5,3,5",
+        " conjured test,5,0,2",
+    })
+    void conjuredVersionIncreasesInQualityTwiceAsFast(String itemName, int sellIn, int quality, int expectedQuality) {
+        Item item = new Item(itemName, sellIn, quality);
+        ItemProxy proxy = new AgedBrieItemProxy(item);
+        proxy.incrementSellInAndUpdateQuality();
+        verifySellInAndQuality(item, sellIn - 1, expectedQuality);
+    }
+
     @Test
     void nextDay() {
         Item item = new Item("test", 5, 10);

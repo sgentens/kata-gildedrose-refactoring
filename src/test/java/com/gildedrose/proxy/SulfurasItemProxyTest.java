@@ -54,4 +54,18 @@ public class SulfurasItemProxyTest {
         ItemProxy proxy = new SulfurasItemProxy(item);
         assertEquals(0, proxy.calculateNextQualityDegradation());
     }
+
+    @ParameterizedTest
+    @CsvSource({
+        " conjured test,20,50",
+        " CoNJuReD test,5,10",
+        " \tCoNJuReD test,-3,10",
+        "Conjured test,-10,1",
+    })
+    void conjuredVersionDoesNotUpdateSellDateNorChangesQuality(String itemName, int sellIn, int quality) {
+        Item item = new Item(itemName, sellIn, quality);
+        ItemProxy proxy = new SulfurasItemProxy(item);
+        proxy.incrementSellInAndUpdateQuality();
+        verifySellInAndQuality(item, sellIn, quality);
+    }
 }

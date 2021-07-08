@@ -4,6 +4,7 @@ import com.gildedrose.Item;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static com.gildedrose.utils.GildedRoseTestUtils.verifySellInAndQuality;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -60,6 +61,19 @@ public class ItemProxyTest {
         assertEquals(-1, proxy.calculateNextQualityDegradation());
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {
+        "Conjured test",
+        " conjured test",
+        "CoNJuReD test",
+        " \tCoNJuReD test",
+    })
+    void updateQualityDegradesConjuredItemsTwiceAsFast(String itemName) {
+        Item item = new Item(itemName, 5, 10);
+        ItemProxy proxy = new FixedDegradationItemProxy(item);
+        proxy.updateQuality();
+        verifySellInAndQuality(item, 5, 8);
+    }
 
     static class FixedDegradationItemProxy extends ItemProxy {
 

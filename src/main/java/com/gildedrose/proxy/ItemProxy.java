@@ -1,6 +1,7 @@
 package com.gildedrose.proxy;
 
 import com.gildedrose.Item;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Base class that acts as a proxy for operations on {@link Item}.
@@ -45,6 +46,18 @@ public abstract class ItemProxy {
     }
 
     void updateQuality() {
+        if (isConjured()) {
+            updateQualityForConjuredItem();
+        } else {
+            updateQualityForNonConjuredItem();
+        }
+    }
+
+    private void updateQualityForConjuredItem() {
+        item.quality += 2 * calculateNextQualityDegradation();
+    }
+
+    private void updateQualityForNonConjuredItem() {
         item.quality += calculateNextQualityDegradation();
     }
 
@@ -52,6 +65,10 @@ public abstract class ItemProxy {
      * Calculates the quality degradation that will occur on this day iteration.
      */
     abstract int calculateNextQualityDegradation();
+
+    private boolean isConjured() {
+        return StringUtils.startsWithIgnoreCase(StringUtils.trim(item.name), "conjured");
+    }
 
     private void resetToBoundaryIfNecessary() {
         if (item.quality > MAX_QUALITY) {

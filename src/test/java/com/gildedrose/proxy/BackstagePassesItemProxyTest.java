@@ -101,4 +101,21 @@ public class BackstagePassesItemProxyTest {
         ItemProxy proxy = new BackstagePassesItemProxy(item);
         assertEquals(3, proxy.calculateNextQualityDegradation());
     }
+
+    @ParameterizedTest
+    @CsvSource({
+        "Conjured test,12,50,50",
+        "Conjured test,12,45,47",
+        " conjured test,10,27,31",
+        "CoNJuReD test,9,10,14",
+        " \tCoNJuReD test,4,3,9",
+        " conjured test,3,20,26",
+        " conjured test,0,5,0",
+    })
+    void conjuredVersionIncreasesInQualityTwiceAsFast(String itemName, int sellIn, int quality, int expectedQuality) {
+        Item item = new Item(itemName, sellIn, quality);
+        ItemProxy proxy = new BackstagePassesItemProxy(item);
+        proxy.incrementSellInAndUpdateQuality();
+        verifySellInAndQuality(item, sellIn - 1, expectedQuality);
+    }
 }

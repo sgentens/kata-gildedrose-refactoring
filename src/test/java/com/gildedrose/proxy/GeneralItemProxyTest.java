@@ -52,6 +52,21 @@ public class GeneralItemProxyTest {
         verifySellInAndQuality(item, -6, expectedQuality);
     }
 
+    @ParameterizedTest
+    @CsvSource({
+        " conjured test,20,50,48",
+        " conjured test,3,10,8",
+        " CoNJuReD test,-5,10,6",
+        " \tCoNJuReD test,-10,10,6",
+        "Conjured test,-10,1,0",
+    })
+    void conjuredVersionIncreasesInQualityTwiceAsFast(String itemName, int sellIn, int quality, int expectedQuality) {
+        Item item = new Item(itemName, sellIn, quality);
+        ItemProxy proxy = new GeneralItemProxy(item);
+        proxy.incrementSellInAndUpdateQuality();
+        verifySellInAndQuality(item, sellIn - 1, expectedQuality);
+    }
+
     @Test
     void nextDay() {
         Item item = new Item("test", 5, 10);
