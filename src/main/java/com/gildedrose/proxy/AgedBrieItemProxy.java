@@ -6,9 +6,9 @@ import com.gildedrose.Item;
  * @author Steven Gentens
  * @since 0.0.1
  */
-public final class AgedBrieItemProxy extends ItemProxy {
+final class AgedBrieItemProxy extends ItemProxy {
 
-    public AgedBrieItemProxy(Item item) {
+    AgedBrieItemProxy(Item item) {
         super(item);
     }
 

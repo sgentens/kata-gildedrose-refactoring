@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-import com.gildedrose.type.ItemType;
+import com.gildedrose.proxy.ItemType;
 
 class GildedRose {
     Item[] items;

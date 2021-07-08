@@ -6,9 +6,9 @@ import com.gildedrose.Item;
  * @author Steven Gentens
  * @since 0.0.1
  */
-public final class SulfurasItemProxy extends ItemProxy {
+final class SulfurasItemProxy extends ItemProxy {
 
-    public SulfurasItemProxy(Item item) {
+    SulfurasItemProxy(Item item) {
         super(item);
     }
 

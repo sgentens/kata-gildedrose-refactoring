@@ -6,9 +6,9 @@ import com.gildedrose.Item;
  * @author Steven Gentens
  * @since 0.0.1
  */
-public final class BackstagePassesItemProxy extends ItemProxy {
+final class BackstagePassesItemProxy extends ItemProxy {
 
-    public BackstagePassesItemProxy(Item item) {
+    BackstagePassesItemProxy(Item item) {
         super(item);
     }
 

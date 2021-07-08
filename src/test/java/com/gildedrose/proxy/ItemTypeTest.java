@@ -1,4 +1,4 @@
-package com.gildedrose.type;
+package com.gildedrose.proxy;
 
 import com.gildedrose.Item;
 import com.gildedrose.proxy.*;

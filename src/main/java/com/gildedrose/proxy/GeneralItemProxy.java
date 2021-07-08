@@ -6,9 +6,9 @@ import com.gildedrose.Item;
  * @author Steven Gentens
  * @since 0.0.1
  */
-public final class GeneralItemProxy extends ItemProxy {
+final class GeneralItemProxy extends ItemProxy {
 
-    public GeneralItemProxy(Item item) {
+    GeneralItemProxy(Item item) {
         super(item);
     }
 

@@ -1,7 +1,6 @@
-package com.gildedrose.type;
+package com.gildedrose.proxy;
 
 import com.gildedrose.Item;
-import com.gildedrose.proxy.*;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
