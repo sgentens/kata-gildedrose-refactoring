@@ -45,7 +45,7 @@ public enum ItemType {
             .filter(Optional::isPresent)
             .map(Optional::get)
             .findFirst()
-            .orElseThrow(() -> new UnsupportedItemException(item));
+            .orElseThrow(() -> new ItemNotConvertibleToItemProxyException(item));
     }
 
     static class TypeCheck {
