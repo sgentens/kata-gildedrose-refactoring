@@ -18,7 +18,7 @@ public final class SulfurasItemProxy extends ItemProxy {
     }
 
     @Override
-    void nextDay() {
+    void incrementSellIn() {
         // never sold
     }
 

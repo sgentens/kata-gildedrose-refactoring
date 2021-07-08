@@ -42,7 +42,7 @@ public class ItemProxyTest {
     void nextDay() {
         Item item = new Item("test", 5, 10);
         ItemProxy proxy = new FixedDegradationItemProxy(item);
-        proxy.nextDay();
+        proxy.incrementSellIn();
         verifySellInAndQuality(item, 4, 10);
     }
 

@@ -25,7 +25,7 @@ public abstract class ItemProxy {
      * Should the min/max quality be crossed, it gets reset to said boundary.
      */
     public void incrementSellInAndUpdateQuality() {
-        nextDay();
+        incrementSellIn();
         updateQuality();
         resetToBoundaryIfNecessary();
     }
@@ -41,7 +41,7 @@ public abstract class ItemProxy {
     /**
      * Indicates the item was not sold and moves closer to the sale deadline.
      */
-    void nextDay() {
+    void incrementSellIn() {
         item.sellIn -= 1;
     }
 

@@ -36,7 +36,7 @@ public class SulfurasItemProxyTest {
     void neverIncrementsNextDay() {
         Item item = new Item("test", 5, 10);
         ItemProxy proxy = new SulfurasItemProxy(item);
-        proxy.nextDay();
+        proxy.incrementSellIn();
         verifySellInAndQuality(item, 5, 10);
     }
 
